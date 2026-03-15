@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connect with Circular Economy Huon</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --beige:#F5F0E8;
+    --beige-mid:#EDE6D8;
+    --charcoal:#3D3D3A;
+    --charcoal-mid:#5C5650;
+    --charcoal-lt:#8A7F74;
+    --gold:#BA7517;
+    --gold-lt:#F5E8CC;
+    --gold-mid:#D9A03A;
+    --white:#FFFFFF;
+    --border:#C8BFB0;
+    --border-lt:#DDD6CC;
+    --radius:6px;
+    --radius-lg:10px;
+  }
+
+  body {
+    font-family:'Lato',sans-serif;
+    background:var(--beige);
+    color:var(--charcoal);
+    font-size:16px;
+    line-height:1.6;
+    padding:32px 20px 48px;
+  }
+
+  .shell {
+    max-width:620px;
+    margin:0 auto;
+  }
+
+  .fh {
+    margin-bottom:28px;
+    padding-bottom:22px;
+    border-bottom:1px solid var(--border);
+  }
+
+  .eyebrow {
+    font-family:'Lato',sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:8px;
+  }
+
+  h1 {
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:30px;
+    font-weight:normal;
+    color:var(--charcoal);
+    line-height:1.2;
+    margin-bottom:10px;
+  }
+
+  .preamble {
+    font-size:14px;
+    color:var(--charcoal-mid);
+    line-height:1.7;
+  }
+
+  .sec {
+    margin-bottom:24px;
+  }
+
+  .sec-label {
+    font-family:'Lato',sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--charcoal-lt);
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .sec-label::after {
+    content:'';
+    flex:1;
+    height:1px;
+    background:var(--border-lt);
+  }
+
+  .fg {
+    margin-bottom:16px;
+  }
+
+  .fl {
+    display:block;
+    font-family:'Lato',sans-serif;
+    font-size:14px;
+    font-weight:700;
+    color:var(--charcoal);
+    margin-bottom:5px;
+  }
+
+  .fh2 {
+    display:block;
+    font-family:'Lato',sans-serif;
+    font-size:13px;
+    color:var(--charcoal-lt);
+    margin-bottom:6px;
+  }
+
+  .req {
+    color:var(--gold);
+  }
+
+  .opt {
+    font-weight:300;
+    font-size:13px;
+    color:var(--charcoal-lt);
+  }
+
+  input[type=text],
+  input[type=email],
+  input[type=tel],
+  textarea,
+  select {
+    width:100%;
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:9px 12px;
+    font-family:'Lato',sans-serif;
+    font-size:15px;
+    color:var(--charcoal);
+    appearance:none;
+  }
+
+  input[type=text]:focus,
+  input[type=email]:focus,
+  input[type=tel]:focus,
+  textarea:focus,
+  select:focus {
+    outline:none;
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px var(--gold-lt);
+  }
+
+  textarea {
+    resize:vertical;
+    min-height:90px;
+    line-height:1.5;
+  }
+
+  .pgrid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:4px;
+  }
+
+  .pt {
+    position:relative;
+  }
+
+  .pt input[type=checkbox] {
+    position:absolute;
+    opacity:0;
+    width:0;
+    height:0;
+  }
+
+  .pt label {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 14px;
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    cursor:pointer;
+    transition:border-color .15s, background .15s;
+    font-family:'Lato',sans-serif;
+    font-size:14px;
+    font-weight:700;
+    color:var(--charcoal);
+    line-height:1.3;
+  }
+
+  .ticon {
+    width:18px;
+    height:18px;
+    border:1.5px solid var(--border);
+    border-radius:4px;
+    background:var(--beige);
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .15s, border-color .15s;
+  }
+
+  .ticon svg {
+    opacity:0;
+    transition:opacity .15s;
+  }
+
+  .tsub {
+    font-weight:300;
+    font-size:12px;
+    color:var(--charcoal-lt);
+    margin-top:1px;
+    display:block;
+  }
+
+  .pt input:checked + label {
+    border-color:var(--gold);
+    background:var(--gold-lt);
+  }
+
+  .pt input:checked + label .ticon {
+    background:var(--gold);
+    border-color:var(--gold);
+  }
+
+  .pt input:checked + label .ticon svg {
+    opacity:1;
+  }
+
+  .cond {
+    overflow:hidden;
+    max-height:0;
+    opacity:0;
+    transition:max-height .35s ease, opacity .25s ease, margin .35s ease;
+    margin-top:0;
+  }
+
+  .cond.open {
+    max-height:1200px;
+    opacity:1;
+    margin-top:20px;
+  }
+
+  .cinner {
+    background:var(--white);
+    border:1px solid var(--border);
+    border-left:3px solid var(--gold);
+    border-radius:var(--radius-lg);
+    padding:20px 20px 8px;
+  }
+
+  .ch {
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:17px;
+    color:var(--charcoal);
+    margin-bottom:3px;
+  }
+
+  .cs {
+    font-family:'Lato',sans-serif;
+    font-size:13px;
+    color:var(--charcoal-lt);
+    margin-bottom:14px;
+    padding-bottom:12px;
+    border-bottom:1px solid var(--border-lt);
+  }
+
+  .rg, .cg {
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+
+  .ro, .co {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    font-family:'Lato',sans-serif;
+    font-size:14px;
+    color:var(--charcoal);
+    padding:8px 10px;
+    border-radius:var(--radius);
+    transition:background .12s;
+  }
+
+  .ro:hover, .co:hover {
+    background:var(--beige-mid);
+  }
+
+  .ro input, .co input {
+    width:16px;
+    height:16px;
+    accent-color:var(--gold);
+    flex-shrink:0;
+    cursor:pointer;
+  }
+
+  .agg {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-bottom:10px;
+  }
+
+  .ab {
+    position:relative;
+  }
+
+  .ab input {
+    position:absolute;
+    opacity:0;
+    width:0;
+    height:0;
+  }
+
+  .ab label {
+    display:block;
+    text-align:center;
+    padding:9px 5px;
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    font-family:'Lato',sans-serif;
+    font-size:15px;
+    font-weight:700;
+    color:var(--charcoal);
+    cursor:pointer;
+    transition:all .12s;
+  }
+
+  .ab input:checked + label {
+    background:var(--gold);
+    border-color:var(--gold);
+    color:var(--white);
+  }
+
+  .pbox {
+    background:var(--beige);
+    border:1px solid var(--border-lt);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    margin-top:8px;
+    font-size:14px;
+    color:var(--charcoal-mid);
+    line-height:1.6;
+  }
+
+  .pbox strong {
+    color:var(--charcoal);
+    display:block;
+    margin-bottom:3px;
+    font-weight:700;
+  }
+
+  .ff {
+    margin-top:32px;
+    padding-top:22px;
+    border-top:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+
+  .sbtn {
+    background:var(--gold);
+    color:var(--white);
+    border:none;
+    border-radius:var(--radius);
+    padding:13px 36px;
+    font-family:'Lato',sans-serif;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:background .15s;
+  }
+
+  .sbtn:hover {
+    background:#9E6310;
+  }
+
+  .sbtn:active {
+    transform:scale(0.98);
+  }
+
+  .snote {
+    font-size:13px;
+    color:var(--charcoal-lt);
+    line-height:1.5;
+  }
+
+  .err {
+    font-size:13px;
+    color:#b33;
+    display:none;
+  }
+
+  #thankyou {
+    display:none;
+    text-align:center;
+    padding:48px 24px;
+  }
+
+  .tyi {
+    width:58px;
+    height:58px;
+    background:var(--gold-lt);
+    border:2px solid var(--gold);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 20px;
+  }
+
+  #thankyou h2 {
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:26px;
+    font-weight:600;
+    color:var(--charcoal);
+    margin-bottom:10px;
+  }
+
+  #thankyou p {
+    font-size:15px;
+    color:var(--charcoal-mid);
+    max-width:460px;
+    margin:0 auto 10px;
+    line-height:1.7;
+  }
+
+  .tysteps {
+    text-align:left;
+    max-width:420px;
+    margin:20px auto 0;
+    background:var(--white);
+    border:1px solid var(--border);
+    border-left:3px solid var(--gold);
+    border-radius:var(--radius-lg);
+    padding:16px 20px;
+  }
+
+  .tys {
+    font-size:14px;
+    color:var(--charcoal-mid);
+    padding:6px 0;
+    line-height:1.6;
+    border-bottom:1px solid var(--border-lt);
+  }
+
+  .tys:last-child {
+    border-bottom:none;
+  }
+
+  .tys strong {
+    color:var(--charcoal);
+  }
+
+  @media (max-width:480px) {
+    .pgrid { grid-template-columns:1fr; }
+    .agg { grid-template-columns:repeat(2,1fr); }
+    body { padding:20px 14px 40px; }
+    h1 { font-size:24px; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <form id="ceh-form"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfCkv2jIRjOPTx-2dJOuEZXFs_DGBR_K1jaBtw5NVQMYm67ww/formResponse"
+        method="POST"
+        target="ceh-frame">
+
+    <div class="fh">
+      <div class="eyebrow">Circular Economy Huon</div>
+      <h1>Connect with us</h1>
+      <p class="preamble">
+        We're a volunteer-run community group based in the Huon Valley, working on projects that build local resilience — from community transport to sustainable living guides. Whether you'd like to join, donate, volunteer, or just hear what we're up to, this is the place to start.
+      </p>
+    </div>
+
+    <div class="sec">
+      <div class="sec-label">Your details</div>
+
+      <div class="fg" id="fg-name">
+        <label class="fl" for="f-name">Your name <span class="req">*</span></label>
+        <input type="text" id="f-name" name="entry.641813431" placeholder="First and last name" autocomplete="name">
+        <span class="err" id="err-name">Please enter your name</span>
+      </div>
+
+      <div class="fg" id="fg-email">
+        <label class="fl" for="f-email">Email address <span class="req">*</span></label>
+        <input type="email" id="f-email" name="entry.791607891" placeholder="you@example.com" autocomplete="email">
+        <span class="err" id="err-email">Please enter a valid email address</span>
+      </div>
+
+      <div class="fg">
+        <label class="fl" for="f-phone">Phone <span class="opt">(optional)</span></label>
+        <input type="tel" id="f-phone" name="entry.1616153688" style="max-width:280px" autocomplete="tel">
+      </div>
+
+      <div class="fg">
+        <label class="fl" for="f-loc">Where are you based? <span class="opt">(optional)</span></label>
+        <span class="fh2">e.g. Huonville, Geeveston, Cygnet, Woodbridge</span>
+        <input type="text" id="f-loc" name="entry.1441552430" style="max-width:320px">
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-label">What brings you here?</div>
+      <p style="font-family:'Lato',sans-serif;font-size:14px;color:var(--charcoal-lt);margin-bottom:12px">
+        Select as many as apply to you.
+      </p>
+
+      <div class="pgrid">
+        <div class="pt">
+          <input type="checkbox" id="pm">
+          <label for="pm">
+            <div class="ticon">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                <path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>Become a member<span class="tsub">$10 / year</span></div>
+          </label>
+        </div>
+
+        <div class="pt">
+          <input type="checkbox" id="pd">
+          <label for="pd">
+            <div class="ticon">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                <path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>Make a donation<span class="tsub">Any amount</span></div>
+          </label>
+        </div>
+
+        <div class="pt">
+          <input type="checkbox" id="pv">
+          <label for="pv">
+            <div class="ticon">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                <path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>Volunteer<span class="tsub">Help out with projects</span></div>
+          </label>
+        </div>
+
+        <div class="pt">
+          <input type="checkbox" id="pc">
+          <label for="pc">
+            <div class="ticon">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                <path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>Stay connected<span class="tsub">News or a message</span></div>
+          </label>
+        </div>
+      </div>
+
+      <input type="hidden" name="entry.1384364922" value="No">
+      <input type="hidden" name="entry.2022659388" value="No">
+      <input type="hidden" name="entry.527944092" value="No">
+      <input type="hidden" name="entry.413272970" value="No">
+    </div>
+
+    <div class="cond" id="sm">
+      <div class="cinner">
+        <div class="ch">Membership</div>
+        <div class="cs">Welcome. Your $10 membership supports everything we do in the valley.</div>
+
+        <div class="fg">
+          <label class="fl">I support the aims of Circular Economy Huon</label>
+          <span class="fh2">To build a more resilient, connected, and sustainable Huon Valley.</span>
+          <div class="rg">
+            <label class="ro"><input type="radio" name="entry.581847972" value="Yes"> Yes, I agree</label>
+          </div>
+        </div>
+
+        <div class="fg">
+          <label class="fl">How would you prefer to pay?</label>
+          <div class="rg">
+            <label class="ro"><input type="radio" name="entry.2138374600" value="I'll pay by bank transfer"> Bank transfer</label>
+            <label class="ro"><input type="radio" name="entry.2138374600" value="Pay in person"> Pay in person at an event</label>
+          </div>
+        </div>
+
+        <div class="pbox">
+          <strong>Bank transfer details</strong>
+          Bendigo Bank &nbsp;·&nbsp; BSB: 633-000 &nbsp;·&nbsp; Account: 159 571 959<br>
+          Please use your name as the reference. We'll confirm receipt by email.
+        </div>
+
+        <div class="fg" style="margin-top:16px">
+          <label class="fl" for="f-mint">Your connection to circular economy thinking <span class="opt">(optional)</span></label>
+          <textarea id="f-mint" name="entry.1117181049" placeholder="Feel free to say as much or as little as you like."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="cond" id="sd">
+      <div class="cinner">
+        <div class="ch">Donation</div>
+        <div class="cs">Thank you. Every dollar goes directly into community projects in the valley. CEH is entirely volunteer-run.</div>
+
+        <div class="fg">
+          <label class="fl">Donation amount</label>
+          <div class="agg">
+            <div class="ab"><input type="radio" id="a10" name="entry.1621564002" value="$10"><label for="a10">$10</label></div>
+            <div class="ab"><input type="radio" id="a25" name="entry.1621564002" value="$25"><label for="a25">$25</label></div>
+            <div class="ab"><input type="radio" id="a50" name="entry.1621564002" value="$50"><label for="a50">$50</label></div>
+            <div class="ab"><input type="radio" id="aot" name="entry.1621564002" value="__other_option__"><label for="aot">Other</label></div>
+          </div>
+          <input type="text" id="f-damt-other" name="entry.1621564002.other_option_response" placeholder="Enter amount (e.g. 35)" style="max-width:180px;display:none">
+        </div>
+
+        <div class="pbox">
+          <strong>Bank transfer details</strong>
+          Bendigo Bank &nbsp;·&nbsp; BSB: 633-000 &nbsp;·&nbsp; Account: 159 571 959<br>
+          Please use your name as the reference.
+        </div>
+      </div>
+    </div>
+
+    <div class="cond" id="sv">
+      <div class="cinner">
+        <div class="ch">Volunteering</div>
+        <div class="cs">We'd love your help. If you're not sure where you fit yet, that's fine — we can work it out together.</div>
+
+        <div class="fg">
+          <label class="fl" for="f-skills">Skills or interests <span class="opt">(optional)</span></label>
+          <span class="fh2">Local knowledge and community connections are just as valuable as technical skills.</span>
+          <textarea id="f-skills" name="entry.1778943857"></textarea>
+        </div>
+
+        <div class="fg">
+          <label class="fl">Time available</label>
+          <div class="rg">
+            <label class="ro"><input type="radio" name="entry.1184321899" value="Occasional help when something comes up"> Occasional help when something comes up</label>
+            <label class="ro"><input type="radio" name="entry.1184321899" value="A few hours a month"> A few hours a month</label>
+            <label class="ro"><input type="radio" name="entry.1184321899" value="Regular weekly involvement"> Regular weekly involvement</label>
+            <label class="ro"><input type="radio" name="entry.1184321899" value="Not sure yet — happy to discuss"> Not sure yet — happy to discuss</label>
+            <label class="ro"><input type="radio" id="vtime-other-radio" name="entry.1184321899" value="__other_option__"> Other</label>
+          </div>
+          <input type="text" id="f-vtime-other" name="entry.1184321899.other_option_response" placeholder="Describe your availability" style="margin-top:8px;display:none">
+        </div>
+
+        <div class="fg">
+          <label class="fl">Projects of interest <span class="opt">(optional)</span></label>
+          <div class="cg">
+            <label class="co"><input type="checkbox" name="entry.150670918" value="Community transport"> Community transport</label>
+            <label class="co"><input type="checkbox" name="entry.150670918" value="Sustainable Consumer Guide"> Sustainable Consumer Guide</label>
+            <label class="co"><input type="checkbox" name="entry.150670918" value="Events and workshops"> Events and workshops</label>
+            <label class="co"><input type="checkbox" name="entry.150670918" value="Social media and communications"> Social media and communications</label>
+            <label class="co"><input type="checkbox" name="entry.150670918" value="Research and writing"> Research and writing</label>
+            <label class="co"><input type="checkbox" name="entry.150670918" value="Whatever is most needed"> Whatever's most needed</label>
+            <label class="co"><input type="checkbox" id="vproj-other-check" name="entry.150670918" value="__other_option__"> Other</label>
+          </div>
+          <input type="text" id="f-vproj-other" name="entry.150670918.other_option_response" placeholder="Please describe" style="margin-top:8px;display:none">
+        </div>
+
+        <div class="fg">
+          <label class="fl" for="f-vother">Anything else? <span class="opt">(optional)</span></label>
+          <textarea id="f-vother" name="entry.2042661084"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="cond" id="sc">
+      <div class="cinner">
+        <div class="ch">Stay connected</div>
+        <div class="cs">We send occasional updates about our work in the valley, and we always welcome messages from the community.</div>
+
+        <div class="fg">
+          <label class="fl">What would you like to hear about? <span class="opt">(optional)</span></label>
+          <div class="cg">
+            <label class="co"><input type="checkbox" name="entry.1201637" value="General CEH news and projects"> General CEH news and projects</label>
+            <label class="co"><input type="checkbox" name="entry.1201637" value="Transport and community connectivity updates"> Transport and community connectivity updates</label>
+            <label class="co"><input type="checkbox" name="entry.1201637" value="Events, workshops, and market days"> Events, workshops, and market days</label>
+            <label class="co"><input type="checkbox" name="entry.1201637" value="Sustainable Consumer Guide updates"> Sustainable Consumer Guide updates</label>
+            <label class="co"><input type="checkbox" id="nl-other-check" name="entry.1201637" value="__other_option__"> Other</label>
+          </div>
+          <input type="text" id="f-nl-other" name="entry.1201637.other_option_response" placeholder="Please describe" style="margin-top:8px;display:none">
+        </div>
+
+        <div class="fg">
+          <label class="fl" for="f-msg">Your message <span class="opt">(optional)</span></label>
+          <span class="fh2">A question, a suggestion, a piece of local knowledge, or just a hello. We read everything.</span>
+          <textarea id="f-msg" name="entry.1748171675"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" style="margin-top:28px">
+      <div class="sec-label">One last thing</div>
+      <div class="fg">
+        <label class="fl" for="f-heard">How did you find us? <span class="opt">(optional)</span></label>
+        <select id="f-heard" name="entry.1606990006" style="max-width:360px">
+          <option value="">— Select one —</option>
+          <option value="Word of mouth / a friend told me">Word of mouth / a friend told me</option>
+          <option value="Huon Valley Farmers Market or other market">Huon Valley Farmers Market or other market</option>
+          <option value="Facebook or social media">Facebook or social media</option>
+          <option value="Our website">Our website</option>
+          <option value="A CEH event or workshop">A CEH event or workshop</option>
+          <option value="Newspaper or local media">Newspaper or local media</option>
+          <option value="__other_option__">Other</option>
+        </select>
+        <input type="text" id="f-heard-other" name="entry.1606990006.other_option_response" placeholder="Please tell us" style="max-width:340px;margin-top:8px;display:none">
+      </div>
+    </div>
+
+    <div class="ff">
+      <button type="submit" class="sbtn">Send</button>
+      <span class="snote">Your details go directly to the CEH team.<br>We'll be in touch within a week or two.</span>
+    </div>
+  </form>
+
+  <iframe name="ceh-frame" id="ceh-frame" style="display:none;width:0;height:0;border:0;position:absolute;"></iframe>
+
+  <div id="thankyou">
+    <div class="tyi">
+      <svg width="24" height="20" viewBox="0 0 24 20" fill="none">
+        <path d="M2 10l7 7L22 2" stroke="#BA7517" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2>Thank you for getting in touch.</h2>
+    <p>We really appreciate you taking the time.</p>
+    <div class="tysteps" id="tysteps"></div>
+    <p style="margin-top:20px;font-size:14px">Thank you for being part of what we're building in the Huon Valley.</p>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  function tog(id, open) {
+    var el = document.getElementById(id);
+    if (el) el.classList.toggle('open', open);
+  }
+
+  function setYesNo(entryName, checked) {
+    var hidden = document.querySelector('input[type="hidden"][name="' + entryName + '"]');
+    if (hidden) hidden.value = checked ? 'Yes' : 'No';
+  }
+
+  function show(el, shouldShow) {
+    if (el) el.style.display = shouldShow ? 'block' : 'none';
+  }
+
+  function validateForm() {
+    var name = document.getElementById('f-name');
+    var email = document.getElementById('f-email');
+    var nameErr = document.getElementById('err-name');
+    var emailErr = document.getElementById('err-email');
+    var ok = true;
+
+    show(nameErr, false);
+    show(emailErr, false);
+    name.style.borderColor = '';
+    email.style.borderColor = '';
+
+    if (!name.value.trim()) {
+      show(nameErr, true);
+      name.style.borderColor = '#b33';
+      ok = false;
+    }
+
+    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(email.value.trim())) {
+      show(emailErr, true);
+      email.style.borderColor = '#b33';
+      ok = false;
+    }
+
+    return ok;
+  }
+
+  function buildThankYou() {
+    var steps = [];
+
+    if (document.getElementById('pm').checked) {
+      steps.push('<strong>Membership:</strong> BSB 633-000, account 159 571 959. Please use your name as the reference.');
+    }
+    if (document.getElementById('pd').checked) {
+      steps.push('<strong>Donation:</strong> BSB 633-000, account 159 571 959. Thank you — it makes a real difference.');
+    }
+    if (document.getElementById('pv').checked) {
+      steps.push('<strong>Volunteering:</strong> One of the team will be in touch within a week or two.');
+    }
+    if (document.getElementById('pc').checked) {
+      steps.push('<strong>Your message:</strong> We\'ll read it and get back to you if a reply would be useful.');
+    }
+    if (!steps.length) {
+      steps.push('We\'ll be in touch soon.');
+    }
+
+    document.getElementById('tysteps').innerHTML = steps.map(function (s) {
+      return '<div class="tys">' + s + '</div>';
+    }).join('');
+  }
+
+  function syncPurposePanels() {
+    var pm = document.getElementById('pm');
+    var pd = document.getElementById('pd');
+    var pv = document.getElementById('pv');
+    var pc = document.getElementById('pc');
+
+    tog('sm', pm.checked);
+    tog('sd', pd.checked);
+    tog('sv', pv.checked);
+    tog('sc', pc.checked);
+
+    setYesNo('entry.1384364922', pm.checked);
+    setYesNo('entry.2022659388', pd.checked);
+    setYesNo('entry.527944092', pv.checked);
+    setYesNo('entry.413272970', pc.checked);
+  }
+
+  function syncDonationOther() {
+    var otherRadio = document.getElementById('aot');
+    var otherField = document.getElementById('f-damt-other');
+    show(otherField, otherRadio.checked);
+    if (!otherRadio.checked) otherField.value = '';
+  }
+
+  function syncVolunteerTimeOther() {
+    var otherRadio = document.getElementById('vtime-other-radio');
+    var otherField = document.getElementById('f-vtime-other');
+    show(otherField, otherRadio.checked);
+    if (!otherRadio.checked) otherField.value = '';
+  }
+
+  function syncVolunteerProjectOther() {
+    var otherCheck = document.getElementById('vproj-other-check');
+    var otherField = document.getElementById('f-vproj-other');
+    show(otherField, otherCheck.checked);
+    if (!otherCheck.checked) otherField.value = '';
+  }
+
+  function syncNewsletterOther() {
+    var otherCheck = document.getElementById('nl-other-check');
+    var otherField = document.getElementById('f-nl-other');
+    show(otherField, otherCheck.checked);
+    if (!otherCheck.checked) otherField.value = '';
+  }
+
+  function syncHeardOther() {
+    var select = document.getElementById('f-heard');
+    var otherField = document.getElementById('f-heard-other');
+    var shouldShow = select.value === '__other_option__';
+    show(otherField, shouldShow);
+    if (!shouldShow) otherField.value = '';
+  }
+
+  function initListeners() {
+    var form = document.getElementById('ceh-form');
+    var iframe = document.getElementById('ceh-frame');
+
+    document.getElementById('pm').addEventListener('change', syncPurposePanels);
+    document.getElementById('pd').addEventListener('change', syncPurposePanels);
+    document.getElementById('pv').addEventListener('change', syncPurposePanels);
+    document.getElementById('pc').addEventListener('change', syncPurposePanels);
+
+    var donationRadios = document.querySelectorAll('input[name="entry.1621564002"]');
+    donationRadios.forEach(function (radio) {
+      radio.addEventListener('change', syncDonationOther);
+    });
+
+    var volunteerTimeRadios = document.querySelectorAll('input[name="entry.1184321899"]');
+    volunteerTimeRadios.forEach(function (radio) {
+      radio.addEventListener('change', syncVolunteerTimeOther);
+    });
+
+    document.getElementById('vproj-other-check').addEventListener('change', syncVolunteerProjectOther);
+    document.getElementById('nl-other-check').addEventListener('change', syncNewsletterOther);
+    document.getElementById('f-heard').addEventListener('change', syncHeardOther);
+
+    form.addEventListener('submit', function (e) {
+      if (!validateForm()) {
+        e.preventDefault();
+        return;
+      }
+
+      buildThankYou();
+
+      window.setTimeout(function () {
+        form.style.display = 'none';
+        document.getElementById('thankyou').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 300);
+    });
+
+    if (iframe) {
+      iframe.addEventListener('load', function () {
+        // Optional hook point after Google Form response loads into iframe.
+        // Left intentionally quiet.
+      });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    initListeners();
+    syncPurposePanels();
+    syncDonationOther();
+    syncVolunteerTimeOther();
+    syncVolunteerProjectOther();
+    syncNewsletterOther();
+    syncHeardOther();
+  });
+})();
+</script>
+</body>
+</html>
